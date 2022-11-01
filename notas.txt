@@ -1,0 +1,18 @@
+API Rest ful
+Representational State Transfer,
+convencion para hacer servicios web con el protocolo HTTP
+- GET: obtener informacion, con o sin detalles desde la bd
+- PUT, PATCH: modificar informacion
+PUT vs PATCH
+  put enviar todos los datos a modificar
+  patch, enviar los datos exactos a modificar.
+- POST: enviar informacion para guardarla
+- DELETE: eliminar informacion
+
+
+CRUD
+- Create
+- Read
+- Update
+- Delete
+
