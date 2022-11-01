@@ -22,3 +22,12 @@ CRUD
 api.example.com/tasks/{id}
 api.example.com/people/{id}/
 api.example.com/people/{id}/tasks
+
+//Class 5
+- Query params: parametros que vienen en los endpoints
+sirve para paginado, filtrar
+api.example/products
+api.example.com/products?page=1
+api.example.com/products?limit=10&offset=0
+
+Nota: Los endspoint que sean especificos deben ir antes de los endpoints de forma dinamica

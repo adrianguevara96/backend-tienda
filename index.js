@@ -2,27 +2,22 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello, my server in express');
-})
+//data faker
+const faker = require('faker');
 
-app.get('/nueva-ruta', (req, res) => {
-  res.send('Hello, Im a new endpoint');
-})
-
+//GETS
 app.get('/products', (req, res) => {
-  res.json([
-    {
-      id: 1,
-      name: 'Product 1',
-      price: 1000
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      price: 2000
-    }
-  ])
+  const products = [];
+  const { size } = req.query;
+  const limit = size || 10;
+  for (let i = 0; i < limit; i++){
+    products.push({
+      name: faker.commerce.productName(),
+      price: parseInt(faker.commerce.price(), 10),
+      image: faker.image.imageUrl(),
+    })
+  }
+  res.json(products);
 })
 
 app.get('/product/:id', (req, res) => {
@@ -34,18 +29,38 @@ app.get('/product/:id', (req, res) => {
       price: 2000
     }
   )
+});
+
+app.get('/products/filter', (req, res) => {
+  res.send('Yo soy un filter');
+});
+
+//Query params, get
+app.get('/users', (req, res) => {
+  const { limit, offset } = req.query;
+  if (limit && offset) {
+    res.json({
+      limit,
+      offset
+    })
+  }else{
+    res.send('There are no params');
+  }
 })
 
-//params by url
-app.get('/categories/:categoryId/products/:productId', (req, res) => {
-  const {categoryId, productId} = req.params;
-  res.json(
-    {
-      categoryId,
-      productId
-    }
-  )
+app.get('/products/filter', (req, res) => {
+  res.send('Yo soy un filter');
 })
+
+
+
+
+
+
+app.get('/', (req, res) => {
+  res.send('Hello, my server in express');
+})
+
 
 app.listen(port, () => {
   console.log("Port: " + port);
