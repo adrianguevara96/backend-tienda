@@ -11,11 +11,40 @@ app.get('/nueva-ruta', (req, res) => {
 })
 
 app.get('/products', (req, res) => {
-  res.json({
-    id: 1,
-    name: 'Product 1',
-    price: 1000
-  })
+  res.json([
+    {
+      id: 1,
+      name: 'Product 1',
+      price: 1000
+    },
+    {
+      id: 2,
+      name: 'Product 2',
+      price: 2000
+    }
+  ])
+})
+
+app.get('/product/:id', (req, res) => {
+  const { id } = req.params;
+  res.json(
+    {
+      id,
+      name: 'Product 2',
+      price: 2000
+    }
+  )
+})
+
+//params by url
+app.get('/categories/:categoryId/products/:productId', (req, res) => {
+  const {categoryId, productId} = req.params;
+  res.json(
+    {
+      categoryId,
+      productId
+    }
+  )
 })
 
 app.listen(port, () => {

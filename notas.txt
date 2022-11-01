@@ -1,3 +1,4 @@
+//Class 3
 API Rest ful
 Representational State Transfer,
 convencion para hacer servicios web con el protocolo HTTP
@@ -16,3 +17,8 @@ CRUD
 - Update
 - Delete
 
+//Class 4
+- GET: formar de hacer un endpoint
+api.example.com/tasks/{id}
+api.example.com/people/{id}/
+api.example.com/people/{id}/tasks
