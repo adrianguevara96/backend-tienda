@@ -36,3 +36,16 @@ Nota: Los endspoint que sean especificos deben ir antes de los endpoints de form
 - PUT: se debe enviar todos los atributos para que nuestro item se actualice completamente
 - PATCH (UPDATE PARTIAL): se puede enviar uno o varios atributos necesarios para actualizar.
 - DELETE: borrar informacion
+Extra: crud users
+
+//Class 9
+- STATUS CODE: Codigos de estados, por rango
+100 - 199: respuesta de informacion
+200 - 299: respuesta satisfactoria
+    200: Todo bien
+    201: El recurso a crear, fue creado con exito
+300 - 399: redireccionamiento
+400 - 499: errores del cliente
+    400: bad request
+    401: sin autorizacion
+500 - 599: errores del servidor
