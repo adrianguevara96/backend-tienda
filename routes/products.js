@@ -34,4 +34,13 @@ router.get('/:id', (req, res) => {
   )
 });
 
+router.post('/', (req, res) => {
+  //receive data
+  const body = req.body;
+  res.json({
+    message: 'created',
+    data: body
+  })
+})
+
 module.exports = router;

@@ -4,6 +4,9 @@ const routerApi = require('./routes');
 const app = express();
 const port = 3000;
 
+//middleware JSON
+app.use(express.json());
+
 //Routers
 routerApi(app);
 
