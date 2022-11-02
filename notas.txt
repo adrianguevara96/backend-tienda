@@ -31,3 +31,8 @@ api.example.com/products?page=1
 api.example.com/products?limit=10&offset=0
 
 Nota: Los endspoint que sean especificos deben ir antes de los endpoints de forma dinamica
+
+//Class 8
+- PUT: se debe enviar todos los atributos para que nuestro item se actualice completamente
+- PATCH (UPDATE PARTIAL): se puede enviar uno o varios atributos necesarios para actualizar.
+- DELETE: borrar informacion

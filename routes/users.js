@@ -10,14 +10,47 @@ router.get('/', (req, res) => {
 
   for (let i = 0; i < limit; i++) {
     users.push({
-      name: `Name ${i+1}`,
-      address: `Address ${i+1}`,
-      money: parseInt(faker.commerce.price())
+      name: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      address: faker.address.cityName(),
     })
   }
 
   res.json(users);
 });
+
+router.post('/', (req, res) => {
+  //body
+  const body = req.body;
+  //response
+  res.json({
+    message: "user added",
+    data: body
+  })
+})
+
+router.put('/:id', (req, res) => {
+  //params
+  const { id } = req.params;
+  //body
+  const body = req.body;
+  //response
+  res.json({
+    message: 'user updated',
+    data: body,
+    id
+  })
+});
+
+router.delete('/:id', (req, res) => {
+  //params
+  const { id } = req.params;
+  //response
+  res.json({
+    message: 'user deleted',
+    id
+  })
+})
 
 module.exports = router;
 
