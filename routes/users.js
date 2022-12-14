@@ -1,56 +1,92 @@
 const express = require('express');
 
 //services
-const UsersService = require('./services/users.service')
+const UsersService = require('./services/users.service');
+const validatorHandler = require('./../middlewares/validator.handler');
+const { createUserSchema, updateUserSchema, getUserSchema } = require('./../schemas/user.schema')
+
 const service = new UsersService()
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  const users = service.find()
+router.get('/', async (req, res) => {
+  const users = await service.find()
   res.json(users);
 });
 
-router.get('/:id', (req,res) => {
-  const { id } = req.params;
-  const user = service.findOne(id);
-  res.json(user);
-})
+router.get(
+  '/:id',
+  validatorHandler(getUserSchema, 'params'),
+  async (req,res, next) => {
+    try{
+      const { id } = req.params;
+      const user = await service.findOne(id);
+      res.json(user);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
-router.post('/', (req, res) => {
-  //body
-  const body = req.body;
-  const newUser = service.create(body);
-  //response
-  res.json({
-    message: "user added",
-    data: newUser
-  })
-})
+router.post(
+  '/',
+  validatorHandler(createUserSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      //body
+      const body = req.body;
+      const newUser = await service.create(body);
+      //response
+      res.json({
+        message: "user added",
+        data: newUser
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
+);
 
-router.patch('/:id', (req, res) => {
-  //params
-  const { id } = req.params;
-  //receive data
-  const body = req.body;
-  const user = service.update(id, body);
-  //response
-  res.json({
-    message: 'user updated',
-    data: user,
-    id
-  })
+router.patch(
+  '/:id',
+  validatorHandler(getUserSchema, 'params'),
+  validatorHandler(updateUserSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      //params
+      const { id } = req.params;
+      //receive data
+      const body = req.body;
+      const user = await service.update(id, body);
+      //response
+      res.json({
+        message: 'user updated',
+        data: user,
+        id
+      })
+    } catch (error) {
+      next(error);
+    }
+
 });
 
-router.delete('/:id', (req, res) => {
-  //params
-  const { id } = req.params;
-  //receive data
-  const user = service.delete(id);
-  //response
-  res.json({
-    message: 'user deleted',
-    data: user
-  })
+router.delete(
+  '/:id',
+  validatorHandler(getUserSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      //params
+      const { id } = req.params;
+      //receive data
+      const user = await service.delete(id);
+      //response
+      res.json({
+        message: 'user deleted',
+        data: user
+      })
+    } catch (error) {
+      next(error);
+    }
+
 })
 
 module.exports = router;
