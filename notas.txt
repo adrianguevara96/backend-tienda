@@ -49,3 +49,7 @@ Extra: crud users
     400: bad request
     401: sin autorizacion
 500 - 599: errores del servidor
+
+//Class 10
+routing, todo lo que tiene que ver con las direcciones de las peticiones
+service, contiene todos los metodos necesarios o la logica de negeocio
