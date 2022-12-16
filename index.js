@@ -4,11 +4,30 @@ const routerApi = require('./routes');
 //Middleware
 const { logError, errorHandler, boomErrorHandler } = require('./middlewares/error.handler');
 
+//Cors
+const cors = require('cors');
+
 const app = express();
 const port = 3000;
 
 //middleware JSON
 app.use(express.json());
+
+//cors - all domains
+app.use(cors());
+
+//cors - uniques domains
+// var whitelist = ['http://www.localhost:8080', 'https://myapp.com'];
+// var corsOptions = {
+//   origin : (origin, callback) => {
+//     if(whitelist.indexOf(origin) !== -1) {
+//       callback(null, true)
+//     }else{
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   }
+// }
+//app.use(cors(corsOptions));
 
 //Routers
 routerApi(app);
